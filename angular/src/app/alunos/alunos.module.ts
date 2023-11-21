@@ -8,12 +8,17 @@ import {AlunosService} from "./alunos.service";
 import {SharedModule} from "../shared/shared.module";
 import {FormsModule} from "@angular/forms";
 import {AlunosGuard} from "../auth/alunos.guard";
+import {AlunosDeactivatedGuard} from "../auth/alunos-deactivated.guard";
 
 @NgModule({
   imports: [CommonModule, AlunosRountingModule, SharedModule, FormsModule],
   declarations: [AlunosComponent, AlunoFormComponent, AlunoDetalheComponent],
   exports: [],
-  providers: [AlunosService, AlunosGuard]
+  providers: [
+    AlunosService,
+    AlunosGuard,
+    AlunosDeactivatedGuard
+  ]
 })
 
 export class AlunosModule {}

@@ -1,6 +1,6 @@
 <div class="p-2">
   <input type="text" pInputText [(ngModel)]="aluno.id" [disabled]="true">
-  <input type="text" pInputText [(ngModel)]="aluno.nome">
+  <input type="text" pInputText [(ngModel)]="aluno.nome" (input)="formMudou()">
   <input type="text" pInputText [(ngModel)]="aluno.idade">
   <input type="text" pInputText [(ngModel)]="aluno.altura">
 </div>
