@@ -9,8 +9,6 @@ import {Router} from "@angular/router";
 })
 export class AppComponent implements OnInit{
 
-  idCurso: any;
-
   constructor(
     private router: Router
   ) {}
@@ -36,17 +34,13 @@ export class AppComponent implements OnInit{
           }
         },
       {
-        label: 'Curso Detalhe', icon: 'pi pi-fw pi-file', command: event =>  {
-          this.redirectCurso();
+        label: 'Alunos', icon: 'pi pi-fw pi-file', command: event =>  {
+          this.router.navigate(['alunos']);
         }
       }
     ];
 
     this.activeItem = this.items[0];
-  }
-
-  redirectCurso(){
-    this.router.navigate(['curso', this.idCurso]);
   }
 
 }

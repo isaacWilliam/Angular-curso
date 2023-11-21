@@ -1,1 +1,11 @@
 <p>cursos works!</p>
+<div class="p-card p-2 shadow-4">
+  <div *ngFor="let curso of cursos">
+    <div class="flex flex-row p-2 border-round cursor-pointer hover:bg-gray-200">
+      <a [routerLink]="[curso.id]" class="no-underline" style="text-decoration: none; color: grey">
+        <span class="pr-3 py-2">ID: {{curso.id}}</span>
+        <span class="pl-3 py-2">Nome: {{curso.nome}}</span>
+      </a>
+    </div>
+  </div>
+</div>

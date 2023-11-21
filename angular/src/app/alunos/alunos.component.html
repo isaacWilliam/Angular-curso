@@ -1,0 +1,14 @@
+<div class="grid p-card p-2 shadow-4">
+  <div class="col-6">
+    <div *ngFor="let aluno of alunos">
+      <div class="flex flex-row p-2 border-round cursor-pointer hover:bg-gray-200">
+        <a [routerLink]="[aluno.id]" class="no-underline" style="text-decoration: none; color: grey">
+          <span class="py-2">Nome: {{aluno.nome}}</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
+import {getXHRResponse} from "rxjs/internal/ajax/getXHRResponse";
 
 @Component({
   selector: 'app-curso-detalhe',
@@ -17,8 +18,6 @@ export class CursoDetalheComponent implements OnInit {
 
 
   ngOnInit() {
-    this.id = this.activatedRoute.snapshot.paramMap.get('id');
-    console.log(this.id);
+    this.activatedRoute.paramMap.subscribe((res => this.id = res.get('id')))
   }
-
 }

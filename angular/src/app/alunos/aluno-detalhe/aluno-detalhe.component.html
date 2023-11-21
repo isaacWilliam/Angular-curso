@@ -1,0 +1,15 @@
+
+<div *ngIf="aluno">
+  <div class="pb-4">
+    Detalhe Do Aluno
+  </div>
+  <div class="flex flex-column">
+    <span>ID: {{aluno.id}}</span>
+    <span>Nome: {{aluno.nome}}</span>
+    <span>Idade: {{aluno.idade}}</span>
+    <span>Altura: {{aluno.altura}}</span>
+  </div>
+  <div class="mt-2">
+    <button pButton type="button" class="p-button-secondary" label="Editar" (click)="editarAluno()"></button>
+  </div>
+</div>
