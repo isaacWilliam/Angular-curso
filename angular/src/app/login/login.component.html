@@ -1,1 +1,13 @@
-<p>login works!</p>
+<div class="grid">
+  <div class="col-4">
+    <div class="flex flex-column gap-2 py-2">
+      <label htmlFor="username">Username</label>
+      <input pInputText aria-describedby="username-help" [(ngModel)]="usuario.nome"/>
+    </div>
+    <div class="flex flex-column gap-2 py-2">
+      <label htmlFor="username">Password</label>
+      <p-password [feedback]="false" [(ngModel)]="usuario.senha"></p-password>
+    </div>
+    <button pButton pRipple label="Submit" (click)="fazerLogin()" class="p-button-success"></button>
+  </div>
+</div>
