@@ -28,4 +28,9 @@ export class AuthService {
   getAutenticado(){
     return this.autenticado;
   }
+
+  canMatch(): boolean {
+    return this.autenticado;
+  }
+
 }

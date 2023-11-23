@@ -11,6 +11,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AlunosModule} from "./alunos/alunos.module";
 import {AuthService} from "./auth/auth.service";
 import {AuthGuard} from "./auth/auth.guard";
+import { PaginaNaoEncontradaComponent } from './pagina-nao-encontrada/pagina-nao-encontrada.component';
 // import {AlunosGuard} from "./auth/alunos.guard";
 
 @NgModule({
@@ -18,6 +19,7 @@ import {AuthGuard} from "./auth/auth.guard";
     AppComponent,
     HomeComponent,
     LoginComponent,
+    PaginaNaoEncontradaComponent,
   ],
   imports: [
     BrowserModule,
