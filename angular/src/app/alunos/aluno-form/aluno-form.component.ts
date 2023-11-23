@@ -21,7 +21,8 @@ export class AlunoFormComponent implements AlteracaoForm {
     this.inscricao = this.activatedRoute.params.subscribe(response => {
       if (response['id']){
         let id = response['id'];
-        this.alunosService.getAllAlunos().forEach(item => {if (item.id == id)this.aluno = item});
+        // this.alunosService.getAllAlunos().forEach(item => {if (item.id == id)this.aluno = item});
+        this.aluno = this.alunosService.getAlunoById(id)
       }
     })
   }

@@ -7,6 +7,7 @@ import {AuthGuard} from "../auth/auth.guard";
 import {AlunosGuard} from "../auth/alunos.guard";
 import {AlunosDeactivatedGuard} from "../auth/alunos-deactivated.guard";
 import {formsGuard} from "../auth/forms.guard";
+import {alunosDetalheResolver} from "../auth/alunos-detalhe.resolver";
 
 const alunosRoutes: Routes = [
   // {
@@ -42,7 +43,10 @@ const alunosRoutes: Routes = [
       },
       {
         path: ':id',
-        component: AlunoDetalheComponent
+        component: AlunoDetalheComponent,
+        resolve: {
+          aluno: alunosDetalheResolver
+        }
       },
       {
         path: ':id/editar',
