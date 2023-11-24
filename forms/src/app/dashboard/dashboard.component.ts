@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, numberAttribute, OnInit} from '@angular/core';
 import {MenuItem} from "primeng/api";
 import {Router} from "@angular/router";
 
@@ -15,18 +15,17 @@ export class DashboardComponent implements OnInit {
 
   items: MenuItem[] | undefined;
 
-  activeItem: MenuItem | undefined;
+  activeItem: number | null = null;
 
   ngOnInit() {
     this.items = [
       { label: 'Template Driven', icon: 'pi pi-fw pi-home', command: event =>  {
-          this.router.navigate(['/'])}
+          this.activeItem = 0}
       },
       { label: 'Data Driven', icon: 'pi pi-fw pi-calendar', command: event =>  {
-          this.router.navigate(['/'])}
+          this.activeItem = 1}
       },
     ];
 
-    this.activeItem = this.items[0];
   }
 }

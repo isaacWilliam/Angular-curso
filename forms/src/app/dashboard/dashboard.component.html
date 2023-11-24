@@ -1,1 +1,13 @@
-<p-tabMenu [model]="items" [activeItem]="activeItem"></p-tabMenu>
+<p-tabMenu [model]="items"></p-tabMenu>
+
+<ng-template [ngIf]="activeItem == 0">
+  <div>
+    <app-template-form></app-template-form>
+  </div>
+</ng-template>
+
+<ng-template [ngIf]="activeItem == 1">
+  <div>
+    <app-data-form></app-data-form>
+  </div>
+</ng-template>

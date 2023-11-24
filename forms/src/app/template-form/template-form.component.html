@@ -1,0 +1,17 @@
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+  <div class="grid">
+    <div class="col-6">
+      <div class="py-2 flex flex-column gap-2">
+        <label For="nome">Username</label>
+        <input pInputText id="nome" name="nome" ngModel aria-describedby="username-help" />
+      </div>
+      <div class="py-2 flex flex-column gap-2">
+        <label For="email">E-mail</label>
+        <input pInputText id="email" name="email" ngModel aria-describedby="username-help" />
+      </div>
+      <div class="py-2">
+        <button pButton class="p-button-secondary" type="submit" label="Salvar"></button>
+      </div>
+    </div>
+  </div>
+</form>
