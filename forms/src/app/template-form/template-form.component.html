@@ -1,17 +1,98 @@
-<form #form="ngForm" (ngSubmit)="onSubmit(form)">
-  <div class="grid">
-    <div class="col-6">
-      <div class="py-2 flex flex-column gap-2">
-        <label For="nome">Username</label>
-        <input pInputText id="nome" name="nome" ngModel aria-describedby="username-help" />
+<div *ngIf="usuario" class="p-2">
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <div class="grid">
+      <div class="col-12 md:col-6">
+        <div class="flex flex-column gap-1 height-div">
+          <label For="nome">Username</label>
+          <input pInputText id="nome" name="nome" [class]="'ng-invalid'" [(ngModel)]="usuario.nome" required/>
+          <ng-template [ngIf]="!form.controls['nome'].untouched && form.controls['nome'].errors">
+            <small>Nome é obrigatório!</small>
+          </ng-template>
+        </div>
       </div>
-      <div class="py-2 flex flex-column gap-2">
-        <label For="email">E-mail</label>
-        <input pInputText id="email" name="email" ngModel aria-describedby="username-help" />
+      <div class="col-12 md:col-8">
+        <div class="flex flex-column gap-1 height-div">
+          <label For="email">E-mail</label>
+          <input pInputText id="email" name="email" [class]="'ng-invalid'" [(ngModel)]="usuario.email" required/>
+          <!--        pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/"-->
+          <ng-template [ngIf]="!form.controls['email'].untouched && form.controls['email'].errors">
+            <small>E-mail é obrigatório!</small>
+          </ng-template>
+        </div>
+      </div>
+      <div class="col-12 md:col-4">
+        <div class="flex flex-column gap-1 height-div">
+          <label For="cep">CEP</label>
+          <input pInputText id="cep" name="cep" [class]="'ng-invalid'" [(ngModel)]="usuario.cep" required/>
+          <!--        pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/"-->
+          <ng-template [ngIf]="!form.controls['cep'].untouched && form.controls['cep'].errors">
+            <small>E-mail é obrigatório!</small>
+          </ng-template>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="flex flex-column gap-1 height-div">
+          <label For="rua">Rua</label>
+          <input pInputText id="rua" name="rua" [class]="'ng-invalid'" [(ngModel)]="usuario.rua" required/>
+          <!--        pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/"-->
+          <ng-template [ngIf]="!form.controls['rua'].untouched && form.controls['rua'].errors">
+            <small>E-mail é obrigatório!</small>
+          </ng-template>
+        </div>
+      </div>
+      <div class="col-12 sm:col-4">
+        <div class="flex flex-column gap-1 height-div">
+          <label For="numero">Número</label>
+          <input pInputText id="numero" name="numero" [class]="'ng-invalid'" [(ngModel)]="usuario.numero" required/>
+          <!--        pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/"-->
+          <ng-template [ngIf]="!form.controls['numero'].untouched && form.controls['numero'].errors">
+            <small>E-mail é obrigatório!</small>
+          </ng-template>
+        </div>
+      </div>
+      <div class="col-12 md:col-8">
+        <div class="flex flex-column gap-1 height-div">
+          <label For="bairro">Bairro</label>
+          <input pInputText id="bairro" name="bairro" [class]="'ng-invalid'" [(ngModel)]="usuario.bairro" required/>
+          <!--        pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/"-->
+          <ng-template [ngIf]="!form.controls['bairro'].untouched && form.controls['bairro'].errors">
+            <small>E-mail é obrigatório!</small>
+          </ng-template>
+        </div>
+      </div>
+      <div class="col-12 md:col-6">
+        <div class="flex flex-column gap-1 height-div">
+          <label For="complemento">Complemento</label>
+          <input pInputText id="complemento" name="complemento" [class]="'ng-invalid'" [(ngModel)]="usuario.cidade" required/>
+          <!--        pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/"-->
+          <ng-template [ngIf]="!form.controls['complemento'].untouched && form.controls['complemento'].errors">
+            <small>E-mail é obrigatório!</small>
+          </ng-template>
+        </div>
+      </div>
+      <div class="col-12 md:col-6">
+        <div class="flex flex-column gap-1 height-div">
+          <label For="cidade">Cidade</label>
+          <input pInputText id="cidade" name="cidade" [class]="'ng-invalid'" [(ngModel)]="usuario.cidade" required/>
+          <!--        pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/"-->
+          <ng-template [ngIf]="!form.controls['cidade'].untouched && form.controls['cidade'].errors">
+            <small>E-mail é obrigatório!</small>
+          </ng-template>
+        </div>
+      </div>
+      <div class="col-12 md:col-4">
+        <div class="flex flex-column gap-1 height-div">
+          <label For="uf">UF</label>
+          <input pInputText id="uf" name="uf" [class]="'ng-invalid'" [(ngModel)]="usuario.uf" required/>
+          <!--        pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/"-->
+          <ng-template [ngIf]="!form.controls['uf'].untouched && form.controls['uf'].errors">
+            <small>E-mail é obrigatório!</small>
+          </ng-template>
+        </div>
       </div>
       <div class="py-2">
         <button pButton class="p-button-secondary" type="submit" label="Salvar"></button>
       </div>
     </div>
-  </div>
-</form>
+  </form>
+</div>
