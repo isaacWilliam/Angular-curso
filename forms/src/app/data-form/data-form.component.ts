@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import { FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-data-form',
@@ -20,7 +20,7 @@ export class DataFormComponent implements OnInit{
     // })
     this.form = this.formBuilder.group({
       name: [null, Validators.required],
-      email: [null, [Validators.required, Validators.email]],
+      email: [null, [Validators.email, Validators.required]],
       endereco: this.formBuilder.group({
         rua: [null, Validators.required],
         numero: [null, Validators.required],
@@ -33,7 +33,7 @@ export class DataFormComponent implements OnInit{
     })
   }
 
-  createForm(){
+  // createForm(){
     // this.form = this.formBuilder.group({
     //   name: [null],
     //   email: [null],
@@ -47,14 +47,18 @@ export class DataFormComponent implements OnInit{
     //     uf: [null],
     //   }
     // })
-  }
+  // }
 
   resetForm(){
     this.form.reset();
   }
 
   onSubmit(form: FormGroup){
+    console.log(form)
+  }
 
+  getClass(form: any){
+    return !!(form.errors && form.touched);
   }
 
 }

@@ -4,82 +4,82 @@
       <div class="col-12 md:col-6 pt-4 p-1">
         <div class="flex flex-column gap-1 height-div">
           <label For="nome">Nome</label>
-          <input pInputText id="nome" formControlName="name" [class]="'ng-invalid'"/>
+          <input pInputText id="nome" formControlName="name" [class.ng-invalid]="getClass(form.controls['name'])"/>
           <div class="px-1">
-            <app-form-error [form]="form.controls['name']" msg="Nome é obrigatório!"></app-form-error>
+            <app-form-error [form]="form.controls['name']" title="Nome" ></app-form-error>
           </div>
         </div>
       </div>
       <div class="col-12 md:col-8 p-1">
         <div class="flex flex-column gap-1 height-div">
           <label For="email">E-mail</label>
-          <input pInputText id="email" formControlName="email" [class]="'ng-invalid'"/>
+          <input pInputText id="email" formControlName="email" [class.ng-invalid]="getClass(form.controls['email'])"/>
           <div class="px-1">
-            <app-form-error [form]="form.controls['email']" msg="E-mail é obrigatório!"></app-form-error>
+            <app-form-error [form]="form.controls['email']" title="E-mail"></app-form-error>
           </div>
         </div>
       </div>
-      <div class="grid px-2" formGroupName="endereco">
+      <div class="grid px-2 pt-2" formGroupName="endereco">
         <div class="col-12 md:col-4 p-1">
           <div class="flex flex-column gap-1 height-div">
             <label For="cep">CEP</label>
-            <input pInputText id="cep" formControlName="cep" [class]="'ng-invalid'"/>
+            <input pInputText id="cep" formControlName="cep" [class.ng-invalid]="getClass(form.controls['endereco'].get('cep'))"/>
             <div class="px-1">
-              <app-form-error [form]="form.controls['endereco'].get('cep')" msg="CEP é obrigatório!"></app-form-error>
+              <app-form-error [form]="form.controls['endereco'].get('cep')" title="CEP"></app-form-error>
             </div>
           </div>
         </div>
         <div class="col-12 p-1">
           <div class="flex flex-column gap-1 height-div">
             <label For="rua">Rua</label>
-            <input pInputText id="rua" formControlName="rua" [class]="'ng-invalid'"/>
+            <input pInputText id="rua" formControlName="rua" [class.ng-invalid]="getClass(form.controls['endereco'].get('rua'))"/>
             <div class="px-1">
-              <app-form-error [form]="form.controls['endereco'].get('rua')" msg="Rua é obrigatório!"></app-form-error>
+              <app-form-error [form]="form.controls['endereco'].get('rua')" title="Rua"></app-form-error>
             </div>
           </div>
         </div>
         <div class="col-12 md:col-4 p-1">
           <div class="flex flex-column gap-1 height-div">
             <label For="numero">Número</label>
-            <input pInputText id="numero" formControlName="numero" [class]="'ng-invalid'"/>
+            <input pInputText id="numero" formControlName="numero" [class.ng-invalid]="getClass(form.controls['endereco'].get('numero'))"/>
             <div class="px-1">
-              <app-form-error [form]="form.controls['endereco'].get('numero')" msg="Número é obrigatório!"></app-form-error>
+              <app-form-error [form]="form.controls['endereco'].get('numero')" title="Número"></app-form-error>
             </div>
           </div>
         </div>
         <div class="col-12 md:col-8 p-1">
           <div class="flex flex-column gap-1 height-div">
             <label For="bairro">Bairro</label>
-            <input pInputText id="bairro" formControlName="bairro" [class]="'ng-invalid'"/>
+            <input pInputText id="bairro" formControlName="bairro" [class.ng-invalid]="getClass(form.controls['endereco'].get('bairro'))"/>
             <div class="px-1">
-              <app-form-error [form]="form.controls['endereco'].get('bairro')" msg="Bairro é obrigatório!"></app-form-error>
+              <app-form-error [form]="form.controls['endereco'].get('bairro')" title="Bairro"></app-form-error>
             </div>
           </div>
         </div>
         <div class="col-12 md:col-6 lg:col-4 p-1">
           <div class="flex flex-column gap-1 height-div">
             <label For="complemento">Complemento</label>
-            <input pInputText id="complemento" formControlName="complemento" [class]="'ng-invalid'"/>
+            <input pInputText id="complemento" formControlName="complemento" [class.ng-invalid]="getClass(form.controls['endereco'].get('complemento'))"/>
             <div class="px-1">
-              <app-form-error [form]="form.controls['endereco'].get('complemento')" msg="Complemento é obrigatório!"></app-form-error>
+              <app-form-error [form]="form.controls['endereco'].get('complemento')" title="Complemento"></app-form-error>
             </div>
           </div>
         </div>
         <div class="col-12 md:col-6 lg:col-4 p-1">
           <div class="flex flex-column gap-1 height-div">
             <label For="cidade">Cidade</label>
-            <input pInputText id="cidade" formControlName="cidade" [class]="'ng-invalid'"/>
+            <input pInputText id="cidade" formControlName="cidade" [class.ng-invalid]="getClass(form.controls['endereco'].get('cidade'))"/>
             <div class="px-1">
-              <app-form-error [form]="form.controls['endereco'].get('cidade')" msg="Cidade é obrigatório!"></app-form-error>
+              <app-form-error [form]="form.controls['endereco'].get('cidade')" title="Cidade"></app-form-error>
             </div>
           </div>
         </div>
         <div class="col-12 md:col-4 p-1">
           <div class="flex flex-column gap-1 height-div">
             <label For="uf">UF</label>
-            <input pInputText id="uf" formControlName="uf" [class]="'ng-invalid'"/>
+            <input pInputText id="uf" formControlName="uf" [class.ng-invalid]="getClass(form.controls['endereco'].get('uf'))"/>
             <div class="px-1">
-              <app-form-error [form]="form.controls['endereco'].get('uf')" msg="UF é obrigatório!"></app-form-error>
+              <app-form-error [form]="form.controls['endereco'].get('uf')" title="UF"></app-form-error>
             </div>
           </div>
         </div>

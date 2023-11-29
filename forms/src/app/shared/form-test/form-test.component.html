@@ -2,10 +2,13 @@
   <div class="border-round border-2 border-black-alpha-20 bg-black-alpha-10 p-2">
     <p>Detalhe Componente</p>
     <pre>
-    Form Status: {{form.valid}}
+      Form Status: {{form.valid}}
     </pre>
     <pre>
-      Form Value: {{form.value | json}}
+      Form Value:
+      <div>
+        {{form.value | json}}
+      </div>
     </pre>
   </div>
 </div>
