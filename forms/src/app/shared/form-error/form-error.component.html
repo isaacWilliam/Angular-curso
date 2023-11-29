@@ -1,0 +1,6 @@
+<div *ngIf="form">
+  <ng-template [ngIf]="form.errors && form.touched">
+    <small style="color: red; background-color: #ffd0ce" class="border-round p-1">{{msg}}</small>
+  </ng-template>
+</div>
+
