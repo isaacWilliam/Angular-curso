@@ -23,68 +23,75 @@
         <div class="col-12 md:col-4 p-1">
           <div class="flex flex-column gap-1 height-div">
             <label For="cep">CEP</label>
-            <input pInputText id="cep" formControlName="cep" [class.ng-invalid]="getClass(form.controls['endereco'].get('cep'))"/>
+            <input pInputText id="cep" formControlName="cep" (blur)="getApiViaCep(form.get('endereco.cep')?.value)" [class.ng-invalid]="getClass(form.get('endereco.cep'))"/>
             <div class="px-1">
-              <app-form-error [form]="form.controls['endereco'].get('cep')" title="CEP"></app-form-error>
+              <app-form-error [form]="form.get('endereco.cep')" title="CEP"></app-form-error>
             </div>
           </div>
         </div>
         <div class="col-12 p-1">
           <div class="flex flex-column gap-1 height-div">
             <label For="rua">Rua</label>
-            <input pInputText id="rua" formControlName="rua" [class.ng-invalid]="getClass(form.controls['endereco'].get('rua'))"/>
+            <input pInputText id="rua" formControlName="rua" [class.ng-invalid]="getClass(form.get('endereco.rua'))"/>
             <div class="px-1">
-              <app-form-error [form]="form.controls['endereco'].get('rua')" title="Rua"></app-form-error>
+              <app-form-error [form]="form.get('endereco.rua')" title="Rua"></app-form-error>
             </div>
           </div>
         </div>
         <div class="col-12 md:col-4 p-1">
           <div class="flex flex-column gap-1 height-div">
             <label For="numero">Número</label>
-            <input pInputText id="numero" formControlName="numero" [class.ng-invalid]="getClass(form.controls['endereco'].get('numero'))"/>
+            <input pInputText id="numero" formControlName="numero" [class.ng-invalid]="getClass(form.get('endereco.numero'))"/>
             <div class="px-1">
-              <app-form-error [form]="form.controls['endereco'].get('numero')" title="Número"></app-form-error>
+              <app-form-error [form]="form.get('endereco.numero')" title="Número"></app-form-error>
             </div>
           </div>
         </div>
         <div class="col-12 md:col-8 p-1">
           <div class="flex flex-column gap-1 height-div">
             <label For="bairro">Bairro</label>
-            <input pInputText id="bairro" formControlName="bairro" [class.ng-invalid]="getClass(form.controls['endereco'].get('bairro'))"/>
+            <input pInputText id="bairro" formControlName="bairro" [class.ng-invalid]="getClass(form.get('endereco.bairro'))"/>
             <div class="px-1">
-              <app-form-error [form]="form.controls['endereco'].get('bairro')" title="Bairro"></app-form-error>
+              <app-form-error [form]="form.get('endereco.bairro')" title="Bairro"></app-form-error>
             </div>
           </div>
         </div>
         <div class="col-12 md:col-6 lg:col-4 p-1">
           <div class="flex flex-column gap-1 height-div">
             <label For="complemento">Complemento</label>
-            <input pInputText id="complemento" formControlName="complemento" [class.ng-invalid]="getClass(form.controls['endereco'].get('complemento'))"/>
+            <input pInputText id="complemento" formControlName="complemento" [class.ng-invalid]="getClass(form.get('endereco.complemento'))"/>
             <div class="px-1">
-              <app-form-error [form]="form.controls['endereco'].get('complemento')" title="Complemento"></app-form-error>
+              <app-form-error [form]="form.get('endereco.complemento')" title="Complemento"></app-form-error>
             </div>
           </div>
         </div>
         <div class="col-12 md:col-6 lg:col-4 p-1">
           <div class="flex flex-column gap-1 height-div">
             <label For="cidade">Cidade</label>
-            <input pInputText id="cidade" formControlName="cidade" [class.ng-invalid]="getClass(form.controls['endereco'].get('cidade'))"/>
+            <input pInputText id="cidade" formControlName="cidade" [class.ng-invalid]="getClass(form.get('endereco.cidade'))"/>
             <div class="px-1">
-              <app-form-error [form]="form.controls['endereco'].get('cidade')" title="Cidade"></app-form-error>
+              <app-form-error [form]="form.get('endereco.cidade')" title="Cidade"></app-form-error>
             </div>
           </div>
         </div>
         <div class="col-12 md:col-4 p-1">
           <div class="flex flex-column gap-1 height-div">
             <label For="uf">UF</label>
-            <input pInputText id="uf" formControlName="uf" [class.ng-invalid]="getClass(form.controls['endereco'].get('uf'))"/>
+            <p-autoComplete formGroupName="uf" [dropdown]="true" [suggestions]="filtrados" (completeMethod)="filtrarEstados($event)" [optionLabel]="'nome'">
+              <ng-template let-estado pTemplate="item">
+                <div class="country-item">
+                  <div>{{estado.nome}} - {{estado.sigla}}</div>
+                </div>
+              </ng-template>
+            </p-autoComplete>
+            <input pInputText id="uf" formControlName="uf" [class.ng-invalid]="getClass(form.get('endereco.uf'))"/>
             <div class="px-1">
-              <app-form-error [form]="form.controls['endereco'].get('uf')" title="UF"></app-form-error>
+              <app-form-error [form]="form.get('endereco.uf')" title="UF"></app-form-error>
             </div>
           </div>
         </div>
         <div class="py-2 pl-2">
-          <button pButton class="p-button-secondary" [disabled]="form.invalid" type="submit" label="Salvar"></button>
+          <button pButton class="p-button-secondary" type="submit" label="Salvar"></button>
         </div>
         <div class="py-2 pl-2">
           <button pButton class="p-button-danger" (click)="resetForm()" type="button" label="Cancelar"></button>

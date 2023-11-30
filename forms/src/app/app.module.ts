@@ -8,6 +8,7 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
 import {TemplateFormModule} from "./template-form/template-form.module";
 import {HttpClientModule} from "@angular/common/http";
 import {DataFormModule} from "./data-form/data-form.module";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {DataFormModule} from "./data-form/data-form.module";
     AppRoutingModule,
     NgPrimeModule,
     TemplateFormModule,
-    DataFormModule
+    DataFormModule,
+    BrowserAnimationsModule
   ],
   bootstrap: [AppComponent]
 })
