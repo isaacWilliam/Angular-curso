@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HttpClient} from "@angular/common/http";
 import {Estados} from "../shared/models/estados";
@@ -71,13 +71,13 @@ export class DataFormComponent implements OnInit{
       let validaCep = /^[0-9]{8}$/
       if(validaCep.test(value)){
         this.http.get("https://viacep.com.br/ws/"+ value +"/json").subscribe( (response: any) => {
+          this.filtrarEstadosPorUf(response.uf);
            this.form.patchValue({
              endereco: {
                rua: response.logradouro,
                bairro: response.bairro,
                cidade: response.localidade,
                complemento: response.complemento,
-                 uf: response.uf
              }
            })
         })
@@ -94,18 +94,28 @@ export class DataFormComponent implements OnInit{
       }
     })
   }
+
   filtrarEstados(event: AutoCompleteCompleteEvent) {
     let filtered: any[] = [];
     let query = event.query;
-
     this.estados.forEach(item => {
       let estado = item
-      if (estado.nome.toLowerCase().indexOf(query.toLowerCase()) == 0) {
-          filtered.push(estado);
+      if (estado.sigla.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+        filtered.push(estado);
       }
       this.filtrados = filtered;
     })
+  }
 
+  filtrarEstadosPorUf(uf: string) {
+    let filtered: any[] = [];
+    this.estados.forEach(item => {
+      let estado = item
+      if (estado.sigla.toLowerCase().indexOf(uf.toLowerCase()) == 0) {
+        filtered.push(estado);
+      }
+      this.filtrados = filtered;
+    })
   }
 
 }

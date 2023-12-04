@@ -77,14 +77,13 @@
         <div class="col-12 md:col-4 p-1">
           <div class="flex flex-column gap-1 height-div">
             <label For="uf">UF</label>
-            <p-autoComplete formGroupName="uf" [dropdown]="true" [suggestions]="filtrados" (completeMethod)="filtrarEstados($event)" [optionLabel]="'nome'">
+            <p-autoComplete [showClear]="true" #auto formGroupName="uf" id="uf" [dropdown]="true" [suggestions]="filtrados" (completeMethod)="filtrarEstados($event)" optionLabel="sigla">
               <ng-template let-estado pTemplate="item">
-                <div class="country-item">
-                  <div>{{estado.nome}} - {{estado.sigla}}</div>
+                <div>
+                  {{estado.nome}} - {{estado.sigla}}
                 </div>
               </ng-template>
             </p-autoComplete>
-            <input pInputText id="uf" formControlName="uf" [class.ng-invalid]="getClass(form.get('endereco.uf'))"/>
             <div class="px-1">
               <app-form-error [form]="form.get('endereco.uf')" title="UF"></app-form-error>
             </div>
