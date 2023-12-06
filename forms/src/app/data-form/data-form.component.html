@@ -77,10 +77,10 @@
         <div class="col-12 md:col-4 p-1">
           <div class="flex flex-column gap-1 height-div">
             <label For="uf">UF</label>
-            <p-autoComplete [showClear]="true" #auto formGroupName="uf" id="uf" [dropdown]="true" [suggestions]="filtrados" (completeMethod)="filtrarEstados($event)" optionLabel="sigla">
+            <p-autoComplete [showClear]="true" [class.ng-invalid]="getClass(form.get('endereco.uf'))" formControlName="uf" id="uf" [delay]="3000" [dropdown]="true" [suggestions]="filtrados" (completeMethod)="filtrarEstados($event)" optionLabel="sigla">
               <ng-template let-estado pTemplate="item">
                 <div>
-                  {{estado.nome}} - {{estado.sigla}}
+                  {{estado}}
                 </div>
               </ng-template>
             </p-autoComplete>
@@ -89,12 +89,49 @@
             </div>
           </div>
         </div>
-        <div class="py-2 pl-2">
-          <button pButton class="p-button-secondary" type="submit" label="Salvar"></button>
+        <div class="col-12 md:col-4 p-1">
+          <div class="flex flex-column gap-1 height-div">
+            <label For="uf">UF Select</label>
+            <p-multiSelect [options]="estados" [class.ng-invalid]="getClass(form.get('endereco.ufSelectBox'))" formControlName="ufSelectBox" class="w-full" styleClass="w-full" optionLabel="nome" optionValue="sigla"></p-multiSelect>
+            <div class="px-1">
+              <app-form-error [form]="form.get('endereco.ufSelectBox')" title="UF"></app-form-error>
+            </div>
+          </div>
         </div>
-        <div class="py-2 pl-2">
-          <button pButton class="p-button-danger" (click)="resetForm()" type="button" label="Cancelar"></button>
+      </div>
+      <div class="col-12 md:col-4 p-1">
+        <span>News Letter</span>
+        <div class="flex flex-row gap-1 height-div">
+          <div *ngFor="let lett of letter" class="field-checkbox">
+            <label [for]="lett.name" class="mx-2">{{ lett.name }}</label>
+            <p-radioButton [inputId]="lett.name" [value]="lett.key" [class.ng-invalid]="getClass(form.controls['newsLetter'])" formControlName="newsLetter"></p-radioButton>
+          </div>
+          <div class="px-1">
+            <app-form-error [form]="form.get('newsLetter')" title="News Letter"></app-form-error>
+          </div>
         </div>
+      </div>
+      <div class="col-12 md:col-4 p-1">
+        <label for="fr">Framework</label>
+        <div id="fr" class="flex flex-row gap-1 height-div" formArrayName="framework">
+          <div *ngFor="let value of framework.controls; let i = index" class="field-checkbox" >
+            <p>{{frame[i]}}</p>
+            <label class="mx-2"></label>
+            <p-checkbox [value]="value" [formControlName]="i"  [class.ng-invalid]="getClass(value)"></p-checkbox>
+          </div>
+          <div class="px-1">
+            <app-form-error [form]="form.get('framework')" title="Framework"></app-form-error>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-row">
+      <div class="py-2">
+        <button pButton class="p-button-secondary" type="submit" label="Salvar"></button>
+      </div>
+      <div class="py-2 pl-2">
+        <button pButton class="p-button-danger" (click)="resetForm()" type="button" label="Cancelar"></button>
       </div>
     </div>
     <div>
