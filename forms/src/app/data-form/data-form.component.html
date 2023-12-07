@@ -103,7 +103,7 @@
         <span>News Letter</span>
         <div class="flex flex-row gap-1 height-div">
           <div *ngFor="let lett of letter" class="field-checkbox">
-            <label [for]="lett.name" class="mx-2">{{ lett.name }}</label>
+            <label [for]="lett.name" class="mr-2 ml-0">{{ lett.name }}</label>
             <p-radioButton [inputId]="lett.name" [value]="lett.key" [class.ng-invalid]="getClass(form.controls['newsLetter'])" formControlName="newsLetter"></p-radioButton>
           </div>
           <div class="px-1">
@@ -114,14 +114,13 @@
       <div class="col-12 md:col-4 p-1">
         <label for="fr">Framework</label>
         <div id="fr" class="flex flex-row gap-1 height-div" formArrayName="framework">
-          <div *ngFor="let value of framework.controls; let i = index" class="field-checkbox" >
-            <p>{{frame[i]}}</p>
-            <label class="mx-2"></label>
-            <p-checkbox [value]="value" [formControlName]="i"  [class.ng-invalid]="getClass(value)"></p-checkbox>
+          <div *ngFor="let value of frameworkFormArray.controls; let i = index" class="field-checkbox">
+            <label class="mx-2">{{frame[i].name}}</label>
+            <p-checkbox [formControlName]="i" [class.ng-invalid]="getClass(value)"></p-checkbox>
           </div>
-          <div class="px-1">
-            <app-form-error [form]="form.get('framework')" title="Framework"></app-form-error>
-          </div>
+<!--          <div class="px-1">-->
+<!--            <app-form-error [form]="form.get('framework')" title="Framework"></app-form-error>-->
+<!--          </div>-->
         </div>
       </div>
     </div>

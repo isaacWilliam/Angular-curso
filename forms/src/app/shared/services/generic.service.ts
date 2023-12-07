@@ -23,6 +23,6 @@ export class GenericService {
   }
 
   getFramework() {
-    return ['Angular', 'Vue', 'React', 'Cobol', 'Laravel', 'Cotlin', 'Fluter'];
+    return [{name: 'Angular'}, {name: 'Vue'}, {name: 'React'}, {name: 'Cobol'}, {name: 'Laravel'}, {name: 'Cotlin'}, {name: 'Fluter'}];
   }
 }

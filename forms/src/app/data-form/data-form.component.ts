@@ -28,7 +28,9 @@ export class DataFormComponent implements OnInit{
     private http: HttpClient,
     private consultaCep: ConsultaCepService,
     private generic: GenericService
-  ) {}
+  ) {
+
+  }
 
   ngOnInit(){
     // this.form = new FormGroup({
@@ -38,6 +40,8 @@ export class DataFormComponent implements OnInit{
     this.frame = this.generic.getFramework();
     this.letter = this.generic.getNewsLetter();
     this.createForm();
+    this.addCheckboxes();
+
   }
 
   createForm(){
@@ -55,22 +59,23 @@ export class DataFormComponent implements OnInit{
           ufSelectBox: [<Estado[] | null>null, [Validators.required]]
       }),
         newsLetter: [0 , [Validators.required]],
-        framework: this.buildFramework(),
+        framework: new FormArray([]),
     })
   }
 
-  buildFramework(){
-      const values = this.frame.map(v => new FormControl(false));
-      console.log(values)
-       return this.formBuilder.array(values);
+  get frameworkFormArray(): FormArray {
+    return this.form.controls['framework'] as FormArray;
   }
 
-  get framework(): FormArray {
-    return this.form.controls["framework"] as FormArray;
+  private addCheckboxes() {
+    this.frame.forEach(() => this.frameworkFormArray.push(new FormControl(false)));
+    console.log(this.frameworkFormArray)
   }
 
   resetForm(){
     this.form.reset();
+    this.createForm();
+    this.addCheckboxes();
   }
 
   onSubmit(form: FormGroup){
