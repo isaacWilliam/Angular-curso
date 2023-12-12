@@ -1,21 +1,23 @@
 <div *ngIf="form" class="p-2">
-  <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="grid" >
-      <div class="col-12 md:col-6 pt-4 p-1">
-        <div class="flex flex-column gap-1 height-div">
-          <label For="nome">Nome</label>
-          <input pInputText id="nome" formControlName="name" [class.ng-invalid]="getClass(form.controls['name'])"/>
-          <div class="px-1">
-            <app-form-error [form]="form.controls['name']" title="Nome" ></app-form-error>
-          </div>
-        </div>
-      </div>
+      <app-input-field label="Nome" class="col-12 md:col-6 pt-4 p-1" formControlName="name" inputName="name" type="text" [control]="form.get('name')" [classErro]="getClass(form.get('name'))"></app-input-field>
+      <app-input-field label="E-mail" class="col-12 md:col-6 pt-4 p-1" formControlName="email" inputName="email" type="email" [control]="form.get('email')" [classErro]="getClass(form.get('email'))"></app-input-field>
       <div class="col-12 md:col-8 p-1">
         <div class="flex flex-column gap-1 height-div">
           <label For="email">E-mail</label>
           <input pInputText id="email" formControlName="email" [class.ng-invalid]="getClass(form.controls['email'])"/>
           <div class="px-1">
-            <app-form-error [form]="form.controls['email']" title="E-mail"></app-form-error>
+            <app-form-error [control]="form.get('email')" title="E-mail"></app-form-error>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 md:col-8 p-1">
+        <div class="flex flex-column gap-1 height-div">
+          <label For="confirmarEmail">Confirmar e-mail</label>
+          <input pInputText id="confirmarEmail" formControlName="confirmarEmail" [class.ng-invalid]="getClass(form.controls['confirmarEmail'])"/>
+          <div class="px-1">
+            <app-form-error [control]="form.get('confirmarEmail')" title="Confirmar e-mail"></app-form-error>
           </div>
         </div>
       </div>
@@ -23,9 +25,9 @@
         <div class="col-12 md:col-4 p-1">
           <div class="flex flex-column gap-1 height-div">
             <label For="cep">CEP</label>
-            <input pInputText id="cep" formControlName="cep" (blur)="getApiViaCep(form.get('endereco.cep')?.value)" [class.ng-invalid]="getClass(form.get('endereco.cep'))"/>
+            <input pInputText id="cep" formControlName="cep" [class.ng-invalid]="getClass(form.get('endereco.cep'))"/>
             <div class="px-1">
-              <app-form-error [form]="form.get('endereco.cep')" title="CEP"></app-form-error>
+              <app-form-error [control]="form.get('endereco.cep')" title="CEP"></app-form-error>
             </div>
           </div>
         </div>
@@ -34,7 +36,7 @@
             <label For="rua">Rua</label>
             <input pInputText id="rua" formControlName="rua" [class.ng-invalid]="getClass(form.get('endereco.rua'))"/>
             <div class="px-1">
-              <app-form-error [form]="form.get('endereco.rua')" title="Rua"></app-form-error>
+              <app-form-error [control]="form.get('endereco.rua')" title="Rua"></app-form-error>
             </div>
           </div>
         </div>
@@ -43,7 +45,7 @@
             <label For="numero">Número</label>
             <input pInputText id="numero" formControlName="numero" [class.ng-invalid]="getClass(form.get('endereco.numero'))"/>
             <div class="px-1">
-              <app-form-error [form]="form.get('endereco.numero')" title="Número"></app-form-error>
+              <app-form-error [control]="form.get('endereco.numero')" title="Número"></app-form-error>
             </div>
           </div>
         </div>
@@ -52,7 +54,7 @@
             <label For="bairro">Bairro</label>
             <input pInputText id="bairro" formControlName="bairro" [class.ng-invalid]="getClass(form.get('endereco.bairro'))"/>
             <div class="px-1">
-              <app-form-error [form]="form.get('endereco.bairro')" title="Bairro"></app-form-error>
+              <app-form-error [control]="form.get('endereco.bairro')" title="Bairro"></app-form-error>
             </div>
           </div>
         </div>
@@ -61,23 +63,30 @@
             <label For="complemento">Complemento</label>
             <input pInputText id="complemento" formControlName="complemento" [class.ng-invalid]="getClass(form.get('endereco.complemento'))"/>
             <div class="px-1">
-              <app-form-error [form]="form.get('endereco.complemento')" title="Complemento"></app-form-error>
+              <app-form-error [control]="form.get('endereco.complemento')" title="Complemento"></app-form-error>
             </div>
           </div>
         </div>
         <div class="col-12 md:col-6 lg:col-4 p-1">
           <div class="flex flex-column gap-1 height-div">
-            <label For="cidade">Cidade</label>
-            <input pInputText id="cidade" formControlName="cidade" [class.ng-invalid]="getClass(form.get('endereco.cidade'))"/>
+            <label For="cd">Cidade</label>
+            <p-autoComplete [showClear]="true" [class.ng-invalid]="getClass(form.get('endereco.cidade'))" formControlName="cidade" id="cd" [delay]="3000" [dropdown]="true" [suggestions]="filtrados" (completeMethod)="filtrarEstados($event)" optionLabel="sigla">
+              <ng-template let-cidade pTemplate="item">
+                <div>
+                  {{cidade}}
+                </div>
+              </ng-template>
+            </p-autoComplete>
+<!--            <input pInputText id="cidade" formControlName="cidade" [class.ng-invalid]="getClass(form.get('endereco.cidade'))"/>-->
             <div class="px-1">
-              <app-form-error [form]="form.get('endereco.cidade')" title="Cidade"></app-form-error>
+              <app-form-error [control]="form.get('endereco.cidade')" title="Cidade"></app-form-error>
             </div>
           </div>
         </div>
         <div class="col-12 md:col-4 p-1">
           <div class="flex flex-column gap-1 height-div">
             <label For="uf">UF</label>
-            <p-autoComplete [showClear]="true" [class.ng-invalid]="getClass(form.get('endereco.uf'))" formControlName="uf" id="uf" [delay]="3000" [dropdown]="true" [suggestions]="filtrados" (completeMethod)="filtrarEstados($event)" optionLabel="sigla">
+            <p-autoComplete [showClear]="true" [class.ng-invalid]="getClass(form.get('endereco.uf'))" formControlName="uf" id="uf" [delay]="3000" (onSelect)="getCidadePorUf($event)" [dropdown]="true" [suggestions]="filtrados" (completeMethod)="filtrarEstados($event)" optionLabel="sigla">
               <ng-template let-estado pTemplate="item">
                 <div>
                   {{estado}}
@@ -85,7 +94,7 @@
               </ng-template>
             </p-autoComplete>
             <div class="px-1">
-              <app-form-error [form]="form.get('endereco.uf')" title="UF"></app-form-error>
+              <app-form-error [control]="form.get('endereco.uf')" title="UF"></app-form-error>
             </div>
           </div>
         </div>
@@ -94,7 +103,7 @@
             <label For="uf">UF Select</label>
             <p-multiSelect [options]="estados" [class.ng-invalid]="getClass(form.get('endereco.ufSelectBox'))" formControlName="ufSelectBox" class="w-full" styleClass="w-full" optionLabel="nome" optionValue="sigla"></p-multiSelect>
             <div class="px-1">
-              <app-form-error [form]="form.get('endereco.ufSelectBox')" title="UF"></app-form-error>
+              <app-form-error [control]="form.get('endereco.ufSelectBox')" title="UF"></app-form-error>
             </div>
           </div>
         </div>
@@ -106,21 +115,20 @@
             <label [for]="lett.name" class="mr-2 ml-0">{{ lett.name }}</label>
             <p-radioButton [inputId]="lett.name" [value]="lett.key" [class.ng-invalid]="getClass(form.controls['newsLetter'])" formControlName="newsLetter"></p-radioButton>
           </div>
-          <div class="px-1">
-            <app-form-error [form]="form.get('newsLetter')" title="News Letter"></app-form-error>
-          </div>
         </div>
       </div>
       <div class="col-12 md:col-4 p-1">
         <label for="fr">Framework</label>
-        <div id="fr" class="flex flex-row gap-1 height-div" formArrayName="framework">
-          <div *ngFor="let value of frameworkFormArray.controls; let i = index" class="field-checkbox">
-            <label class="mx-2">{{frame[i].name}}</label>
-            <p-checkbox [formControlName]="i" [class.ng-invalid]="getClass(value)"></p-checkbox>
+        <div id="fr" class="flex flex-column gap-1 height-div" formArrayName="framework">
+          <div class="flex flex-row pt-4">
+            <div *ngFor="let value of frameworkFormArray.controls; let i = index" class="field-checkbox">
+              <label class="mr-2 m-0">{{frame[i].name}}</label>
+              <input class="cursor-pointer" [formControlName]="i" type="checkbox" [class.ng-invalid]="getClass(value)">
+            </div>
           </div>
-<!--          <div class="px-1">-->
-<!--            <app-form-error [form]="form.get('framework')" title="Framework"></app-form-error>-->
-<!--          </div>-->
+          <div class="px-1">
+            <app-form-error [control]="form.get('framework')" title="Framework"></app-form-error>
+          </div>
         </div>
       </div>
     </div>

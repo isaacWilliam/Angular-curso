@@ -1,0 +1,10 @@
+<div *ngIf="control">
+  <div class="flex flex-column gap-1 height-div">
+    <label [for]="inputName">{{label}}</label>
+    <input pInputText [id]="inputName" [type]="type" [class.ng-invalid]="classErro" [(ngModel)]="value"/>
+    <div class="px-1">
+      <app-form-error [control]="control" [title]="label" ></app-form-error>
+    </div>
+  </div>
+</div>
+<p>{{classErro}}</p>

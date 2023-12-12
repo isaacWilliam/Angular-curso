@@ -16,5 +16,7 @@ export class ConsultaCepService {
     return this.http.get("https://viacep.com.br/ws/" + value + "/json");
   }
 
-
+  getCidade(value: string){
+      return this.http.get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${value}/distritos`);
+  }
 }

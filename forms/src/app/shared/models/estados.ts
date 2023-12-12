@@ -1,136 +1,136 @@
 export const Estados: {id: number, sigla: string, nome: string}[] = [
     {
-    id: 1,
-    sigla: 'AC',
-    nome: 'Acre'
+        id: 12,
+        sigla: 'AC',
+        nome: 'Acre'
     },
     {
-      id: 2,
+      id: 27,
       sigla: 'AL',
       nome: 'Alagoas'
     },
     {
-      id: 3,
+      id: 13,
       sigla: 'AM',
       nome: 'Amazonas'
     },
     {
-      id: 4,
+      id: 16,
       sigla: 'AP',
       nome: 'Amapá'
     },
     {
-      id: 5,
+      id: 29,
       sigla: 'BA',
       nome: 'Bahia'
     },
     {
-      id: 6,
+      id: 23,
       sigla: 'CE',
       nome: 'Ceará'
     },
     {
-      id: 7,
+      id: 53,
       sigla: 'DF',
       nome: 'Distrito Federal'
     },
     {
-      id: 8,
+      id: 32,
       sigla: 'ES',
       nome: 'Espírito Santo'
     },
     {
-      id: 9,
+      id: 52,
       sigla: 'GO',
       nome: 'Goiás'
     },
     {
-      id: 10,
+      id: 21,
       sigla: 'MA',
       nome: 'Maranhão'
     },
     {
-      id: 11,
+      id: 31,
       sigla: 'MG',
       nome: 'Minas Gerais'
     },
     {
-      id: 12,
+      id: 50,
       sigla: 'MS',
       nome: 'Mato Grosso do Sul'
     },
     {
-      id: 13,
+      id: 51,
       sigla: 'MT',
       nome: 'Mato Grosso'
     },
     {
-      id: 14,
+      id: 15,
       sigla: 'PA',
       nome: 'Pará'
     },
     {
-      id: 15,
+      id: 25,
       sigla: 'PB',
       nome: 'Paraíba'
     },
     {
-      id: 16,
+      id: 26,
       sigla: 'PE',
       nome: 'Pernambuco'
     },
     {
-      id: 17,
+      id: 22,
       sigla: 'PI',
       nome: 'Piauí'
     },
     {
-      id: 18,
+      id: 41,
       sigla: 'PR',
       nome: 'Paraná'
     },
     {
-      id: 19,
+      id: 33,
       sigla: 'RJ',
       nome: 'Rio de Janeiro'
     },
     {
-      id: 20,
+      id: 24,
       sigla: 'RN',
       nome: 'Rio Grande do Norte'
     },
     {
-      id: 21,
+      id: 11,
       sigla: 'RO',
       nome: 'Rondônia'
     },
     {
-      id: 22,
+      id: 14,
       sigla: 'RR',
       nome: 'Roraima'
     },
     {
-      id: 23,
+      id: 43,
       sigla: 'RS',
       nome: 'Rio Grande do Sul'
     },
     {
-      id: 24,
+      id: 42,
       sigla: 'SC',
       nome: 'Santa Catarina'
     },
     {
-      id: 25,
+      id: 28,
       sigla: 'SE',
       nome: 'Sergipe'
     },
     {
-      id: 26,
+      id: 35,
       sigla: 'SP',
       nome: 'São Paulo'
     },
     {
-      id: 27,
+      id: 17,
       sigla: 'TO',
       nome: 'Tocantins'
     }
