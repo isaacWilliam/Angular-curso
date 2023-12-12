@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MenuItem, MenuItemCommandEvent} from "primeng/api";
+import {MenuItem} from "primeng/api";
 
 @Component({
   selector: 'app-root',
@@ -15,8 +15,8 @@ export class AppComponent implements OnInit{
     this.items = [
       { label: 'Home', icon: 'pi pi-fw pi-home', routerLink: '/', routerLinkActiveOptions: true},
       { label: 'Cursos', icon: 'pi pi-fw pi-calendar',  routerLink: 'cursos', routerLinkActiveOptions: true},
+      { label: 'Unsub. Rxjs', icon: 'pi pi-fw pi-list',  routerLink: 'unsub', routerLinkActiveOptions: true},
     ];
 
-    this.activeItem = this.items[0];
   }
 }

@@ -9,6 +9,7 @@ import {SharedModule} from "./shared/shared.module";
 //todo Para adicionar o locale certo para aplicação
 import ptBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 registerLocaleData(ptBr);
 
@@ -20,7 +21,8 @@ registerLocaleData(ptBr);
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule
   ],
   providers: [
     //todo Usado para configurar os Dates e Currency

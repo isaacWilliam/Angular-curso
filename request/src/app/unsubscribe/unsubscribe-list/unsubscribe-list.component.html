@@ -1,0 +1,8 @@
+<div class="p-3">
+  <input pInputText #value placeholder="valor">
+  <button pButton class="p-button-help" (click)="emitirValor(value.value)">Emitir Valor</button>
+  <button pButton class="p-button-outlined p-button-danger" (click)="mudarVisualizacaoComponents()">Mostrar / Destruir Components</button>
+</div>
+<div *ngIf="mostrarCampos">
+
+</div>

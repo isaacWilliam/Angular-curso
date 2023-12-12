@@ -1,1 +1,35 @@
-<p>cursos works!</p>
+<div class="shadow-3 border-round-md" style="width: 80vw; margin: 1rem auto">
+  <div class="p-panel-header flex justify-content-between p-3 border-bottom-3 border-gray-200 bg-gray-200 ">
+    <p class="text-xl font-semibold">Cursos</p>
+    <button pButton class="p-button-primary text-xl" label="Novo Curso"></button>
+  </div>
+<!--todo Usa-se esse método pra requicisões que precisam de tempo para carrgamento na tela
+      e para evitar duas chamadas usamos o "as" para instanciar uma variavél que será usada no escopo do HTML-->
+  <div *ngIf="cursos$ | async as cursos else skeleton">
+    <p-table [value]="cursos" [tableStyle]="{ 'min-width': '50rem' }">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-curso>
+        <tr>
+          <td>{{curso.id}}</td>
+          <td>{{curso.nome}}</td>
+          <td style="text-align: right">
+            <button pButton label="Editar" class="p-button-secondary"></button>
+            <button pButton label="Remover" class="p-button-danger"></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <ng-template #skeleton>
+    <div class="w-full flex flex-row justify-content-center align-items-center p-4">
+      <span class="pr-6">Carregando</span>
+      <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="6" fill="var(--surface-ground)" animationDuration="3s"></p-progressSpinner>
+    </div>
+  </ng-template>
+</div>
