@@ -1,11 +1,11 @@
 <div class="shadow-3 border-round-md" style="width: 80vw; margin: 1rem auto">
   <div class="p-panel-header flex justify-content-between p-3 border-bottom-3 border-gray-200 bg-gray-200 ">
     <p class="text-xl font-semibold">Cursos</p>
-    <button pButton class="p-button-primary text-xl" label="Novo Curso"></button>
+    <button pButton class="p-button-primary text-xl" label="Novo Curso" (click)="novoCurso()"></button>
   </div>
 <!--todo Usa-se esse método pra requicisões que precisam de tempo para carrgamento na tela
       e para evitar duas chamadas usamos o "as" para instanciar uma variavél que será usada no escopo do HTML-->
-  <div *ngIf="cursos$ | async as cursos else skeleton">
+  <div *ngIf="cursos$ | async as cursos else loading">
     <p-table [value]="cursos" [tableStyle]="{ 'min-width': '50rem' }">
       <ng-template pTemplate="header">
         <tr>
@@ -26,10 +26,15 @@
       </ng-template>
     </p-table>
   </div>
-  <ng-template #skeleton>
-    <div class="w-full flex flex-row justify-content-center align-items-center p-4">
-      <span class="pr-6">Carregando</span>
-      <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="6" fill="var(--surface-ground)" animationDuration="3s"></p-progressSpinner>
+  <ng-template #loading>
+    <div class="p-3 w-full flex justify-content-center" *ngIf="error$ | async; else loadingNoError">
+      <p-messages styleClass="w-full" class="w-full" [(value)]="messages" [enableService]="false"></p-messages>
     </div>
+    <ng-template #loadingNoError>
+      <div class="w-full flex flex-row justify-content-center align-items-center p-4">
+        <span class="pr-6">Carregando</span>
+        <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="6" fill="var(--surface-ground)" animationDuration="3s"></p-progressSpinner>
+      </div>
+    </ng-template>
   </ng-template>
 </div>

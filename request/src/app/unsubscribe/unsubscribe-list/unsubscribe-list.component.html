@@ -4,5 +4,18 @@
   <button pButton class="p-button-outlined p-button-danger" (click)="mudarVisualizacaoComponents()">Mostrar / Destruir Components</button>
 </div>
 <div *ngIf="mostrarCampos">
-
+  <div pAnimateOnScroll enterClass="fadeinleft" leaveClass="fadeoutleft" class="animation-duration-800 animation-ease-in-out">
+    <app-poc-component></app-poc-component>
+  </div>
+  <div pAnimateOnScroll enterClass="fadeinright" leaveClass="fadeoutright" class="animation-duration-1000 animation-ease-in-out">
+    <app-async-component></app-async-component>
+  </div><div pAnimateOnScroll enterClass="fadeinleft" leaveClass="fadeoutleft" class="animation-duration-2000 animation-ease-in-out">
+  <app-unsub-component></app-unsub-component>
+  </div>
+  <div pAnimateOnScroll enterClass="fadeinright" leaveClass="fadeoutright" class="animation-duration-2000 animation-ease-in-out">
+    <app-take-component></app-take-component>
+  </div>
+  <div pAnimateOnScroll enterClass="fadeinleft" leaveClass="fadeoutleft" class="animation-duration-3000 animation-ease-in-out">
+    <app-until-take-component></app-until-take-component>
+  </div>
 </div>

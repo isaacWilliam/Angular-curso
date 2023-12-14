@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Curso} from "./model/curso";
-import {delay, tap} from "rxjs";
+import {delay, tap, timeout} from "rxjs";
 import {environment} from "../../environments/environment";
 
 @Injectable({

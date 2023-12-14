@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {EnviarValorService} from "../enviar-valor.service";
 
 @Component({
   selector: 'app-unsubscribe-list',
@@ -10,12 +11,14 @@ import {Component, OnInit} from '@angular/core';
 export class UnsubscribeListComponent implements OnInit{
 
   mostrarCampos = true;
-
+  constructor(
+    private service: EnviarValorService
+  ) {}
   ngOnInit() {
   }
 
   emitirValor(valor: string){
-
+    this.service.emitirValor(valor);
   }
 
   mudarVisualizacaoComponents(){

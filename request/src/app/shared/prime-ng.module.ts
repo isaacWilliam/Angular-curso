@@ -7,6 +7,10 @@ import {SkeletonModule} from "primeng/skeleton";
 import {ProgressSpinnerModule} from "primeng/progressspinner";
 import {InputTextModule} from "primeng/inputtext";
 import {FieldsetModule} from "primeng/fieldset";
+import {MessagesModule} from "primeng/messages";
+import {ToastModule} from "primeng/toast";
+import {AnimateOnScrollModule} from "primeng/animateonscroll";
+import {AnimateModule} from "primeng/animate";
 
 const primeNg = [
   ButtonModule,
@@ -15,7 +19,11 @@ const primeNg = [
   SkeletonModule,
   ProgressSpinnerModule,
   InputTextModule,
-  FieldsetModule
+  FieldsetModule,
+  MessagesModule,
+  ToastModule,
+  AnimateOnScrollModule,
+  AnimateModule
 ]
 
 @NgModule({
