@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {CursosService} from "./cursos.service";
-import {Curso} from "./model/curso";
-import {catchError, empty, map, Observable, of, Subject} from "rxjs";
-import {Message, MessageService} from "primeng/api";
+import {catchError, Observable, of, Subject} from "rxjs";
 import {MessageLayoutService} from "../shared/services/message.layout.service";
+import {Message} from "primeng/api";
 
 @Component({
   selector: 'app-cursos',
@@ -21,7 +20,6 @@ export class CursosComponent implements OnInit{
   constructor(
     private cursoService: CursosService,
     private messageLayoutService: MessageLayoutService,
-    private messageService: MessageService,
   ) {}
 
   ngOnInit() {
@@ -57,13 +55,13 @@ export class CursosComponent implements OnInit{
   showSimpleToast(severity: string, summary: string, detail: string){
     this.messageLayoutService.showSimpleToast({severity, summary, detail})
   }
-
-  novoCurso(){
-    this.showSimpleToast('success', 'Sucesso!!', 'Sua requisição foi concluida');
+  removerCurso(id: number){
+    this.cursoService.deleteCurso(id).subscribe(
+      remove => {
+        this.showSimpleToast('success', 'Sucesso!!', 'Curso removido com sucesso.');
+        this.getCursos();
+      }
+    )
   }
-
-  // showSimpleToast(severity: string, summary: string, detail: string) {
-  //   this.messageService.add({ severity: severity, summary: summary, detail: detail });
-  // }
 
 }

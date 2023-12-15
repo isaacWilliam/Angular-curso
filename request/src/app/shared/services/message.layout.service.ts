@@ -1,15 +1,17 @@
 import {Injectable} from "@angular/core";
 import {Message} from "primeng/api";
-import {Subject} from "rxjs";
+import { Subject} from "rxjs";
 
 @Injectable()
 export class MessageLayoutService {
 
-  toastChange = new Subject<Message>();
-  constructor() {}
+  messageChange = new Subject<Message>();
+
+  // private messageChange = new Subject<Message>();
+  // public messageChange$ = this.messageChange.asObservable();
 
   showSimpleToast(messages: Message) {
-    this.toastChange.next(messages);
+    this.messageChange.next(messages);
   }
 
 }

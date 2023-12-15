@@ -9,10 +9,8 @@ import {SharedModule} from "./shared/shared.module";
 //todo Para adicionar o locale certo para aplicação
 import ptBr from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
-import {MessageService} from "primeng/api";
+import {HttpClientModule} from "@angular/common/http";
 import {MessageLayoutService} from "./shared/services/message.layout.service";
-import {ToastComponent} from "./shared/toast/toast.component";
 
 registerLocaleData(ptBr);
 
@@ -31,6 +29,7 @@ registerLocaleData(ptBr);
     //todo Usado para configurar os Dates e Currency
     {provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL'},
     {provide: LOCALE_ID, useValue: 'pt'},
+    MessageLayoutService
   ],
   bootstrap: [AppComponent],
 })

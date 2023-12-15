@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MenuItem, MessageService} from "primeng/api";
-import {MessageLayoutService} from "./shared/services/message.layout.service";
+import {MenuItem} from "primeng/api";
 
 @Component({
   selector: 'app-root',
@@ -12,13 +11,7 @@ export class AppComponent implements OnInit{
 
   activeItem: MenuItem = {};
 
-  constructor(
-    private messageLayoutService: MessageLayoutService,
-    private messageService: MessageService
-  ) {
-    this.messageLayoutService.toastChange.subscribe(
-      message => this.messageService.add(message)
-    );
+  constructor() {
   }
 
   ngOnInit() {
@@ -28,8 +21,5 @@ export class AppComponent implements OnInit{
       { label: 'Unsub. Rxjs', icon: 'pi pi-fw pi-list',  routerLink: 'unsub', routerLinkActiveOptions: true},
     ];
 
-    this.messageLayoutService.toastChange.subscribe(
-      message => this.messageService.add(message)
-    );
   }
 }

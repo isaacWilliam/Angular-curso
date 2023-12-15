@@ -1,7 +1,7 @@
 <div class="shadow-3 border-round-md" style="width: 80vw; margin: 1rem auto">
   <div class="p-panel-header flex justify-content-between p-3 border-bottom-3 border-gray-200 bg-gray-200 ">
     <p class="text-xl font-semibold">Cursos</p>
-    <button pButton class="p-button-primary text-xl" label="Novo Curso" (click)="novoCurso()"></button>
+    <button pButton class="p-button-primary text-xl" label="Novo Curso" [routerLink]="'novo'"></button>
   </div>
 <!--todo Usa-se esse método pra requicisões que precisam de tempo para carrgamento na tela
       e para evitar duas chamadas usamos o "as" para instanciar uma variavél que será usada no escopo do HTML-->
@@ -19,8 +19,8 @@
           <td>{{curso.id}}</td>
           <td>{{curso.nome}}</td>
           <td style="text-align: right">
-            <button pButton label="Editar" class="p-button-secondary"></button>
-            <button pButton label="Remover" class="p-button-danger"></button>
+            <button pButton label="Editar" class="p-button-secondary" [routerLink]="['editar',curso.id]"></button>
+            <button pButton label="Remover" class="p-button-danger" (click)="removerCurso(curso.id)"></button>
           </td>
         </tr>
       </ng-template>

@@ -5,16 +5,21 @@ import { CursosRoutingModule } from './cursos-routing.module';
 import { CursosComponent } from './cursos.component';
 import {SharedModule} from "../shared/shared.module";
 import {CursosService} from "./cursos.service";
+import { FormCursosComponent } from './form-cursos/form-cursos.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {MessageLayoutService} from "../shared/services/message.layout.service";
 
 
 @NgModule({
   declarations: [
-    CursosComponent
+    CursosComponent,
+    FormCursosComponent
   ],
   imports: [
     CommonModule,
     CursosRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ],
   providers: [CursosService]
 })

@@ -1,28 +1,36 @@
-import {Component, OnInit} from '@angular/core';
-import {Message, MessageService} from "primeng/api";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {MessageService} from "primeng/api";
 import {MessageLayoutService} from "../services/message.layout.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-toast',
   template: '<p-toast [breakpoints]="{\'920px\': {width: \'100%\', right: \'0\', left: \'0\'}}"></p-toast>',
-  providers: [MessageLayoutService, MessageService]
+  providers: [MessageService]
 })
 
-export class ToastComponent implements OnInit{
+export class ToastComponent implements OnInit, OnDestroy{
+
+  private subscription: Subscription = new Subscription();
 
   constructor(
     public messageService: MessageService,
-    public messageLayoutService: MessageLayoutService,
+    public messageServiceLayout: MessageLayoutService,
   ) {
-    this.messageLayoutService.toastChange.subscribe(
-      message => this.messageService.add(message)
-    )
   }
 
   ngOnInit() {
-    this.messageLayoutService.toastChange.subscribe(
-       message => this.messageService.add(message)
+    this.subscription = this.messageServiceLayout.messageChange.subscribe(
+      message => this.messageService.add(message)
     )
+
+    // this.subscription = this.messageServiceLayout.messageChange$.subscribe(
+    //   (message: any) => {this.messageService.add(message); console.log(message)}
+    // )
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }
