@@ -1,0 +1,15 @@
+<div class="shadow-4 border-round p-3" style="width: 80vw; margin: 2rem auto">
+  <form [formGroup]="form" (ngSubmit)="enviarForm()">
+    <div class="grid">
+      <div class="col-12 md:col-6">
+        <div class="flex flex-column gap-2">
+          <label htmlFor="curso">Nome do Curso</label>
+          <input pInputText id="curso" aria-describedby="curso-help" [class.ng-invalid]="getValidForm(form.get('nome'))" formControlName="nome"/>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p-button label="Submit" icon="pi pi-check" type="submit" [loading]="loading" [disabled]="form.invalid"></p-button>
+    </div>
+  </form>
+</div>
