@@ -1,14 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {CursosService} from "./cursos.service";
-import {catchError, Observable, of, Subject} from "rxjs";
+import {catchError, EMPTY, empty, map, Observable, of, Subject, switchMap, take} from "rxjs";
 import {MessageLayoutService} from "../shared/services/message.layout.service";
-import {Message} from "primeng/api";
+import {ConfirmationService, Message, MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-cursos',
   templateUrl: './cursos.component.html',
   styleUrls: ['./cursos.component.scss'],
-  preserveWhitespaces: true
+  preserveWhitespaces: true,
+  providers: [ConfirmationService, MessageService]
 })
 export class CursosComponent implements OnInit{
 
@@ -20,6 +21,7 @@ export class CursosComponent implements OnInit{
   constructor(
     private cursoService: CursosService,
     private messageLayoutService: MessageLayoutService,
+    private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit() {
@@ -51,17 +53,33 @@ export class CursosComponent implements OnInit{
      //   () => console.log('completo')
      // )
   }
-
-  showSimpleToast(severity: string, summary: string, detail: string){
-    this.messageLayoutService.showSimpleToast({severity, summary, detail})
-  }
-  removerCurso(id: number){
+  removerCurso(id: number | undefined){
     this.cursoService.deleteCurso(id).subscribe(
       remove => {
         this.showSimpleToast('success', 'Sucesso!!', 'Curso removido com sucesso.');
         this.getCursos();
       }
     )
+  }
+
+  showSimpleToast(severity: string, summary: string, detail: string){
+    this.messageLayoutService.showSimpleToast({severity, summary, detail})
+  }
+
+  showConfirm(header: string, message: string, icon: string, id?: number){
+
+    this.messageLayoutService.confirmDilalog({header: header, message: message, icon: icon}).pipe(
+
+      map(result => {
+
+        if (result) {
+          this.removerCurso(id);
+        }
+
+      }),
+
+      take(1)).subscribe();
+
   }
 
 }

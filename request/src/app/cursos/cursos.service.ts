@@ -20,22 +20,34 @@ export class CursosService {
     // );
   }
 
-  postCurso(form: FormGroup){
-    return this.http.post(this.API, form).pipe(
+  getCursoById(id: any){
+    return this.http.get<Curso>(`${this.API}/${id}`).pipe(
+      take(1));
+  }
+
+  private postCurso(curso: Curso){
+    return this.http.post(this.API, curso).pipe(
       take(1),
     );
   }
 
-  putCurso(form: FormGroup){
-    return this.http.put(this.API, form).pipe(
+  private putCurso(curso: Curso){
+    return this.http.put(`${this.API}/${curso.id}`, curso).pipe(
       take(1),
     )
   }
 
-  deleteCurso(id: number){
+  deleteCurso(id: number | undefined){
     return this.http.delete(`${this.API}/${id}`).pipe(
       take(1)
     )
+  }
+
+  save(curso: Curso){
+    if(curso.id){
+      return this.putCurso(curso)
+    }
+    return this.postCurso(curso)
   }
 
 }

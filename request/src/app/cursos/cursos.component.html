@@ -6,7 +6,7 @@
 <!--todo Usa-se esse método pra requicisões que precisam de tempo para carrgamento na tela
       e para evitar duas chamadas usamos o "as" para instanciar uma variavél que será usada no escopo do HTML-->
   <div *ngIf="cursos$ | async as cursos else loading">
-    <p-table [value]="cursos" [tableStyle]="{ 'min-width': '50rem' }">
+    <p-table [value]="cursos" [tableStyle]="{ 'min-width': '50rem' }" class="flipup animation-duration-1000">
       <ng-template pTemplate="header">
         <tr>
           <th>#</th>
@@ -20,12 +20,13 @@
           <td>{{curso.nome}}</td>
           <td style="text-align: right">
             <button pButton label="Editar" class="p-button-secondary" [routerLink]="['editar',curso.id]"></button>
-            <button pButton label="Remover" class="p-button-danger" (click)="removerCurso(curso.id)"></button>
+            <button pButton label="Remover" class="p-button-danger" (click)="showConfirm('Confirmar exclusão','Deseja continuar o processo?', 'pi pi-exclamation-triangle text-blue-500', curso.id)"></button>
           </td>
         </tr>
       </ng-template>
     </p-table>
   </div>
+
   <ng-template #loading>
     <div class="p-3 w-full flex justify-content-center" *ngIf="error$ | async; else loadingNoError">
       <p-messages styleClass="w-full" class="w-full" [(value)]="messages" [enableService]="false"></p-messages>

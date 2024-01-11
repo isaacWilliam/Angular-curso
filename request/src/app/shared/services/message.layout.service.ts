@@ -1,11 +1,15 @@
 import {Injectable} from "@angular/core";
-import {Message} from "primeng/api";
-import { Subject} from "rxjs";
+import {ConfirmationService, Message} from "primeng/api";
+import {map, Observable, Subject, Subscription, take} from "rxjs";
 
 @Injectable()
 export class MessageLayoutService {
 
+  constructor(private confirmationService: ConfirmationService) {
+  }
+
   messageChange = new Subject<Message>();
+  confirmSubject = new Subject<boolean>();
 
   // private messageChange = new Subject<Message>();
   // public messageChange$ = this.messageChange.asObservable();
@@ -13,5 +17,18 @@ export class MessageLayoutService {
   showSimpleToast(messages: Message) {
     this.messageChange.next(messages);
   }
+
+  confirmDilalog(config: any): Observable<boolean>{
+    console.log(config)
+    this.confirmationService.confirm({
+      header: config.header,
+      message: config.message,
+      icon: config.icon,
+      accept: () => {this.confirmSubject.next(true)},
+      reject: () => {}
+    });
+    return this.confirmSubject.asObservable();
+  }
+
 
 }

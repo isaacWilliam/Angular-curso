@@ -2,10 +2,14 @@ import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {PrimeNgModule} from "./prime-ng.module";
 import {ToastComponent} from "./toast/toast.component";
-import {MessageLayoutService} from "./services/message.layout.service";
+import {ConfirmationService} from "primeng/api";
+import {ConfirmDialogModalComponent} from "./confirm-dialog-modal/confirm-dialog-modal.component";
 
 @NgModule({
-  declarations: [ToastComponent],
+  declarations: [
+    ToastComponent,
+    ConfirmDialogModalComponent
+  ],
   imports: [
     CommonModule,
     PrimeNgModule,
@@ -13,7 +17,9 @@ import {MessageLayoutService} from "./services/message.layout.service";
   exports: [
     PrimeNgModule,
     ToastComponent,
-  ]
+    ConfirmDialogModalComponent
+  ],
+  providers: [ConfirmationService]
 })
 
 export class SharedModule {}

@@ -11,6 +11,8 @@ import {MessagesModule} from "primeng/messages";
 import {ToastModule} from "primeng/toast";
 import {AnimateOnScrollModule} from "primeng/animateonscroll";
 import {AnimateModule} from "primeng/animate";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {FileUploadModule} from "primeng/fileupload";
 
 const primeNg = [
   ButtonModule,
@@ -23,7 +25,9 @@ const primeNg = [
   MessagesModule,
   ToastModule,
   AnimateOnScrollModule,
-  AnimateModule
+  AnimateModule,
+  ConfirmDialogModule,
+  FileUploadModule
 ]
 
 @NgModule({

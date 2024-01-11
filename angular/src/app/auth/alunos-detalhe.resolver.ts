@@ -18,7 +18,6 @@ export const alunosDetalheResolver: ResolveFn<Aluno> = (route: ActivatedRouteSna
       return EMPTY;
     }
 
-
   }));
 
 };
