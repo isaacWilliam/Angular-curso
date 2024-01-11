@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CursosService} from "./cursos.service";
-import {catchError, EMPTY, empty, map, Observable, of, Subject, switchMap, take} from "rxjs";
+import {catchError, map, Observable, of, Subject, take} from "rxjs";
 import {MessageLayoutService} from "../shared/services/message.layout.service";
 import {ConfirmationService, Message, MessageService} from "primeng/api";
 
@@ -21,7 +21,6 @@ export class CursosComponent implements OnInit{
   constructor(
     private cursoService: CursosService,
     private messageLayoutService: MessageLayoutService,
-    private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit() {
@@ -37,7 +36,7 @@ export class CursosComponent implements OnInit{
          //todo Quando for tratar erros no Pipe usar sempre por ultimo para que possa alcançar os erros que estão acima
        catchError(err => {
          this.error$.next(true);
-         this.showSimpleToast('error', 'Sucesso!!', 'Sua requisição foi concluida')
+         this.showSimpleToast('error', 'Falha!!', 'Sua requisição não foi concluída.')
          console.log(err);
          // return empty();
          return of();
@@ -67,19 +66,13 @@ export class CursosComponent implements OnInit{
   }
 
   showConfirm(header: string, message: string, icon: string, id?: number){
-
     this.messageLayoutService.confirmDilalog({header: header, message: message, icon: icon}).pipe(
-
       map(result => {
-
         if (result) {
           this.removerCurso(id);
         }
-
       }),
-
       take(1)).subscribe();
-
   }
 
 }

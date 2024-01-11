@@ -1,6 +1,9 @@
-<div style="width: 500px; margin-top: 20px">
-  <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" (onUpload)="onUpload($event)" [multiple]="true" accept="image/*" [maxFileSize]="1000000">
+<div style="margin-top: 20px">
+  <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" (onProgress)="progressValue = $event.progress" (onUpload)="onUpload($event)" [multiple]="true" [maxFileSize]="100000000">
     <ng-template pTemplate="content">
+      <div *ngIf="progressValue != 0">
+        <p-progressBar [value]="progressValue" ></p-progressBar>
+      </div>
       <ul *ngIf="uploadedFiles.length">
         <li *ngFor="let file of uploadedFiles">{{ file.name }} - {{ file.size }} bytes</li>
       </ul>

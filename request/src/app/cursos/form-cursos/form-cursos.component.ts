@@ -80,7 +80,7 @@ export class FormCursosComponent implements OnInit{
 
     this.loading = true;
 
-    setTimeout(() => {
+    // setTimeout(() => {
       this.loading = false
       if(this.form.valid){
         let msg = this.form.value.id ? 'Curso editado com sucesso.' : 'Curso criado com sucesso.'
@@ -92,7 +92,7 @@ export class FormCursosComponent implements OnInit{
           },
         );
       }
-    }, 3000);
+    // }, 3000);
 
   }
 

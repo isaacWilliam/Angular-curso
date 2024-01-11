@@ -2,6 +2,7 @@ import {Component, OnDestroy} from '@angular/core';
 import {MessageService} from "primeng/api";
 import {UploadFileService} from "./upload-file.service";
 import {Subscription} from "rxjs";
+import {environment} from "../../environments/environment";
 
 interface UploadEvent {
   originalEvent: Event;
@@ -18,7 +19,7 @@ export class UploadFileComponent implements OnDestroy{
 
   uploadedFiles: any[] = [];
   fileSet: Set<File> = new Set<File>();
-
+  progressValue: number = 0;
   sub: Subscription = new Subscription();
 
   constructor(
@@ -27,17 +28,15 @@ export class UploadFileComponent implements OnDestroy{
 
   onUpload(event: any) {
 
-    console.log(event)
-
     for(let file of event.files) {
       this.uploadedFiles.push(file);
       this.fileSet.add(file);
 
     }
      if(this.fileSet && this.fileSet.size > 0){
-       this.sub = this.uploadFileService.upload(this.fileSet, 'api/uploads').subscribe(
+       this.sub = this.uploadFileService.upload(this.fileSet, environment.BASE_URL + '/uploads').subscribe(
          (response: any) => {
-           console.log(response, 'Arquivos enviados com sucesso.');
+           if(response.type == 4) this.progressValue = 0;
          }
        )
      }
@@ -47,6 +46,5 @@ export class UploadFileComponent implements OnDestroy{
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
-
 
 }

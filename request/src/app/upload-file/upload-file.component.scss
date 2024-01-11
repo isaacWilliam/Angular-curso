@@ -1,0 +1,12 @@
+::ng-deep{
+  .p-fileupload-content .p-progressbar{
+    height: 0.75rem;
+    width: 98%;
+    margin: 0.25rem auto;
+    left: initial;
+  }
+
+  .p-progressbar .p-progressbar-label{
+    font-size: 10px;
+  }
+}

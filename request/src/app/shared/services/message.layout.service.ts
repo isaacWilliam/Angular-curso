@@ -19,13 +19,12 @@ export class MessageLayoutService {
   }
 
   confirmDilalog(config: any): Observable<boolean>{
-    console.log(config)
     this.confirmationService.confirm({
       header: config.header,
       message: config.message,
       icon: config.icon,
       accept: () => {this.confirmSubject.next(true)},
-      reject: () => {}
+      reject: () => {this.confirmSubject.next(false)}
     });
     return this.confirmSubject.asObservable();
   }
