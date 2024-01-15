@@ -10,6 +10,13 @@ app.use(express.urlencoded({
     extended: true
 }));
 
+app.get('/downloadPdf', (req, res) => {
+    res.download('./uploads/report.pdf');
+})
+
+app.get('/downloadExcel', (req, res) => {
+    res.download('./uploads/report.xlsx');
+})
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({extends: true}));
 
@@ -26,6 +33,8 @@ app.post('/uploads', multiPartyMidleware, (req, res) => {
     console.log(files);
     res.json({ message: files});
 })
+
+
 
 app.use((req, res, next, err) => res.json({error: err.statusMessage}))
 app.listen(8000, ()=> {

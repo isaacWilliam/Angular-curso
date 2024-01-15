@@ -6,6 +6,7 @@ import {Location} from "@angular/common";
 import {ActivatedRoute} from "@angular/router";
 import {concatMap, exhaustMap, map, mergeMap, switchMap} from "rxjs";
 import {Curso} from "../model/curso";
+import {Cursos2Service} from "../cursos2.service";
 
 @Component({
   selector: 'app-form-cursos',
@@ -20,7 +21,7 @@ export class FormCursosComponent implements OnInit{
 
   constructor(
     private fb: FormBuilder,
-    private cursoService: CursosService,
+    private cursoService: Cursos2Service,
     private messageLayoutService: MessageLayoutService,
     private location: Location,
     private route: ActivatedRoute

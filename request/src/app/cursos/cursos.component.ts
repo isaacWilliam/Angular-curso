@@ -3,6 +3,7 @@ import {CursosService} from "./cursos.service";
 import {catchError, map, Observable, of, Subject, take} from "rxjs";
 import {MessageLayoutService} from "../shared/services/message.layout.service";
 import {ConfirmationService, Message, MessageService} from "primeng/api";
+import {Cursos2Service} from "./cursos2.service";
 
 @Component({
   selector: 'app-cursos',
@@ -19,7 +20,7 @@ export class CursosComponent implements OnInit{
   messages: Message[] = [{ severity: 'error', summary: 'Erro de Requisição', detail: 'Algo deu errado, volte a página inicial e verifique com nossos técnicos' }]
 
   constructor(
-    private cursoService: CursosService,
+    private cursoService: Cursos2Service,
     private messageLayoutService: MessageLayoutService,
   ) {}
 
@@ -30,7 +31,7 @@ export class CursosComponent implements OnInit{
   }
 
   getCursos(){
-     this.cursos$ = this.cursoService.getListCursos()
+     this.cursos$ = this.cursoService.getList()
        .pipe(
          // map(dados => {if (dados) this.showSimpleToast('success', 'Sucesso!!', 'Sua requisição foi concluida')}),
          //todo Quando for tratar erros no Pipe usar sempre por ultimo para que possa alcançar os erros que estão acima
@@ -52,8 +53,8 @@ export class CursosComponent implements OnInit{
      //   () => console.log('completo')
      // )
   }
-  removerCurso(id: number | undefined){
-    this.cursoService.deleteCurso(id).subscribe(
+  removerCurso(id: any){
+    this.cursoService.delete(id).subscribe(
       remove => {
         this.showSimpleToast('success', 'Sucesso!!', 'Curso removido com sucesso.');
         this.getCursos();
