@@ -13,6 +13,9 @@ import {AnimateOnScrollModule} from "primeng/animateonscroll";
 import {AnimateModule} from "primeng/animate";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {FileUploadModule} from "primeng/fileupload";
+import {ToolbarModule} from "primeng/toolbar";
+import {RatingModule} from "primeng/rating";
+import {TagModule} from "primeng/tag";
 
 const primeNg = [
   ButtonModule,
@@ -27,7 +30,10 @@ const primeNg = [
   AnimateOnScrollModule,
   AnimateModule,
   ConfirmDialogModule,
-  FileUploadModule
+  FileUploadModule,
+  ToolbarModule,
+  RatingModule,
+  TagModule
 ]
 
 @NgModule({

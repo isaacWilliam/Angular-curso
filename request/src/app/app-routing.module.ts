@@ -4,6 +4,7 @@ import {CursosModule} from "./cursos/cursos.module";
 import {AppComponent} from "./app.component";
 import {UnsubscribeModule} from "./unsubscribe/unsubscribe.module";
 import {UploadFileModule} from "./upload-file/upload-file.module";
+import {BuscaModule} from "./busca/busca.module";
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'unsub',
     loadChildren: () => UnsubscribeModule,
+  },
+  {
+    path: 'busca',
+    loadChildren: () => BuscaModule,
   }
 ];
 
