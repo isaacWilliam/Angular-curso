@@ -4,10 +4,5 @@ export const environment = {
   API: '/',
   BASE_URL: '',
 
-  // PRODUÇÃO
-  // apiUrl: 'https://api.ambarbank.com.br/prod/',
-  // clientUser: 'ambar-frontend',
-  // clientPass: 'AmbarPass#123'
-
 };
 

@@ -12,11 +12,11 @@ export class AppComponent implements OnInit{
   activeItem: MenuItem = {};
 
   constructor() {
+
   }
 
   ngOnInit() {
     this.items = [
-      { label: 'Home', icon: 'pi pi-fw pi-home', routerLink: '/', routerLinkActiveOptions: true},
       { label: 'Cursos', icon: 'pi pi-fw pi-calendar',  routerLink: 'cursos', routerLinkActiveOptions: true},
       { label: 'Unsub. Rxjs', icon: 'pi pi-fw pi-list',  routerLink: 'unsub', routerLinkActiveOptions: true},
       { label: 'Upload', icon: 'pi pi-fw pi-upload',  routerLink: 'upload', routerLinkActiveOptions: true},

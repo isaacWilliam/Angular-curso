@@ -1,0 +1,12 @@
+# docker compose -f "./request/docker-compose.yml" up -d --build
+# docker login
+# para colocar no railway mudar o nome da imagem docker exp = docker build -t izakew/curso-angular .
+# depois um push no repositorio docker push izakew/curso-angular
+version: '2.1'
+
+services:
+  curso-angular:
+    image: curso-angular
+    build: .
+    ports:
+      - 8081:80

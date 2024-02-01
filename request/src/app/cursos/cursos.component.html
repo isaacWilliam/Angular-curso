@@ -6,7 +6,7 @@
 <!--todo Usa-se esse método pra requicisões que precisam de tempo para carrgamento na tela
       e para evitar duas chamadas usamos o "as" para instanciar uma variavél que será usada no escopo do HTML-->
   <div *ngIf="cursos$ | async as cursos else loading">
-    <p-table [value]="cursos" [tableStyle]="{ 'min-width': '50rem' }" class="flipup animation-duration-1000">
+    <p-table styleClass="border-rounded-lg" [value]="cursos" [tableStyle]="{ 'min-width': '50rem' }" class="flipup animation-duration-1000">
       <ng-template pTemplate="header">
         <tr>
           <th>#</th>

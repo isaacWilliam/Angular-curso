@@ -1,14 +1,70 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl} from "@angular/forms";
+import {debounceTime, distinctUntilChanged, filter, map, Observable, switchMap, take, tap} from "rxjs";
+import {HttpClient, HttpParams} from "@angular/common/http";
 
 @Component({
   selector: 'app-busca',
   templateUrl: './busca.component.html',
   styleUrls: ['./busca.component.scss']
 })
-export class BuscaComponent {
+export class BuscaComponent implements OnInit{
 
   queryField: FormControl = new FormControl();
+  field = 'filename,description,version,github';
+
+  readonly SEARCH_URL = 'https://api.cdnjs.com/libraries';
+  result$: Observable<any> = new Observable<any>();
+
+  constructor(
+    private http: HttpClient
+  ) {}
+
+  ngOnInit() {
+
+    // this.result$ = this.http.get(this.SEARCH_URL + '?search=vue&fields=filename,description,version,github').pipe(
+    //   map((res: any) => res.results)
+    // );
+
+    this.result$ = this.queryField.valueChanges.pipe(
+      //todo Remove os espaços em brancos
+      map(value => value.trim()),
+      //todo filtra valores para rodar somente acima de dois caracteres
+      filter(value => value.length > 2),
+      //todo um delay para não fazer uma requisição á cada letra digitada
+      debounceTime(200),
+      /*todo fazer uma chamada somente se os valores mudarem
+       exemplo: quando digita espaçoes várias vezes */
+      distinctUntilChanged(),
+      switchMap(value => this.http.get(this.SEARCH_URL, {
+        params: {search: value, fields: this.field}
+      })),
+      map((res: any) => res.results)
+    );
+  }
+
+  onSearch(){
+    // let field = 'filename,description,version,github';
+    // let valor = this.queryField.value;
+    // if(valor && (valor = valor.trim()) != ''){
+    //
+    //   // const params1 = {
+    //   //   search: valor,
+    //   //   fields: field
+    //   // }
+    //
+    //   let params = new HttpParams();
+    //   /* todo Nesse caso do HttpParams, da prá fazer tanto pelo Set quanto pelo append  */
+    //   params = params.set('search', valor).append('fields', this.field);
+    //   // params = params.set('fields', field);
+    //
+    //
+    //   this.result$ = this.http.get(this.SEARCH_URL, {params: params}).pipe(
+    //     map((res: any) => res.results)
+    //   );
+    // }
+  }
+
   // productDialog: boolean = false;
   //
   // products!: Product[];
