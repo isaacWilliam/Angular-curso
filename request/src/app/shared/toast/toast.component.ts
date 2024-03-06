@@ -23,10 +23,6 @@ export class ToastComponent implements OnInit, OnDestroy{
     this.subscription = this.messageServiceLayout.messageChange.subscribe(
       message => this.messageService.add(message)
     )
-
-    // this.subscription = this.messageServiceLayout.messageChange$.subscribe(
-    //   (message: any) => {this.messageService.add(message); console.log(message)}
-    // )
   }
 
   ngOnDestroy() {

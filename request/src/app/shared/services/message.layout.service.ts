@@ -11,9 +11,6 @@ export class MessageLayoutService {
   messageChange = new Subject<Message>();
   confirmSubject = new Subject<boolean>();
 
-  // private messageChange = new Subject<Message>();
-  // public messageChange$ = this.messageChange.asObservable();
-
   showSimpleToast(messages: Message) {
     this.messageChange.next(messages);
   }

@@ -17,7 +17,13 @@ export class CursosComponent implements OnInit{
   // cursos: any;
   cursos$: Observable<any> = new Observable<any>;
   error$ = new Subject<boolean>();
-  messages: Message[] = [{ severity: 'error', summary: 'Erro de Requisição', detail: 'Algo deu errado, volte a página inicial e verifique com nossos técnicos' }]
+  messages: Message[] = [
+    {
+      severity: 'error',
+      summary: 'Erro de Requisição',
+      detail: 'Algo deu errado, volte a página inicial e verifique com nossos técnicos'
+    }
+  ]
 
   constructor(
     private cursoService: Cursos2Service,
